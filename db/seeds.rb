@@ -29,6 +29,7 @@ end
 
 30.times do
   Attendance.create(
+    stripe_customer_id: rand(1..100),
     user: User.all.sample,
     event: Event.all.sample
   )
