@@ -7,8 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+10.times do
+  User.create(
+  email: Faker::Internet.email,
+  description: Faker::TvShows::TwinPeaks.quote,
+	first_name: Faker::Name.first_name,
+	last_name: Faker::Name.last_name
+  )
+end
 
 10.times do
-  user = User.create(name: Faker::Name.first_name,
-                     email: Faker::Internet.email)
+  Event.create(
+    start_date: Faker::Date.forward(10),
+    duration: 15,
+    title: Faker::Lorem.characters(60),
+    description: Faker::Lorem.characters(300),
+    price: Faker::Number.between(1, 1000),
+    location: Faker::Games::Zelda.location,
+  )
+end
+
+30.times do
+  Attendance.create(
+    user: User.all.sample,
+    event: Event.all.sample
+  )
 end
